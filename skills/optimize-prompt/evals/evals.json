@@ -1,0 +1,140 @@
+{
+  "skill": "optimize-prompt",
+  "cases": [
+    {
+      "type": "should_trigger",
+      "prompt": "optimize this system prompt for fable 5"
+    },
+    {
+      "type": "should_trigger",
+      "prompt": "my prompt worked on gpt-4o but gpt-5.6 ignores half the instructions - fix it"
+    },
+    {
+      "type": "should_trigger",
+      "prompt": "shorten this 3000 token prompt without losing behavior"
+    },
+    {
+      "type": "should_trigger",
+      "prompt": "why does adding examples make the outputs worse? improve my prompt"
+    },
+    {
+      "type": "should_trigger",
+      "prompt": "rewrite this prompt so the model stops returning invalid json"
+    },
+    {
+      "type": "should_trigger",
+      "prompt": "tune my extraction prompt, its hallucinating fields"
+    },
+    {
+      "type": "should_trigger",
+      "prompt": "migrate our prompts from gpt-5.1 to gpt-5.6"
+    },
+    {
+      "type": "should_trigger",
+      "prompt": "make this prompt follow current reasoning-model best practices"
+    },
+    {
+      "type": "should_trigger",
+      "prompt": "review my system prompt for contradictions"
+    },
+    {
+      "type": "should_trigger",
+      "prompt": "is chain of thought still worth it here? adjust the prompt accordingly"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "write a goal for an overnight agent run with success criteria"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "my agent loop never stops, add exit conditions"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "is prompt A better than prompt B?"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "build a benchmark to compare our prompt variants"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "write a blog post about prompt engineering trends"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "set up promptfoo in our CI pipeline"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "translate this prompt into spanish"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "what does gpt-5.6 cost per million tokens?"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "design a RAG pipeline for our docs"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "make the agent's goal condition verifiable"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "summarize this article in three bullet points"
+    },
+    {
+      "type": "should_not_trigger",
+      "prompt": "fix this failing pytest in the parser module"
+    },
+    {
+      "type": "quality",
+      "prompt": "Optimize this agent system prompt for gpt-5.6: [1500-word prompt with step-by-step scripts, three conflicting formatting rules, and 'be thorough' repeated four times]",
+      "expected_behavior": [
+        "finds and resolves the contradictions and duplicate rules before adding anything new",
+        "classifies instructions first and preserves safety, compliance, and exact-method requirements unless a failing case proves them removable",
+        "converts prescriptive step scripts into outcome + success criteria + stop rules",
+        "moves format and verbosity demands to API parameters where they exist instead of prose",
+        "states what was removed and why, and proposes a before/after check on real failing cases"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "Improve this classification prompt for a small non-reasoning model.",
+      "expected_behavior": [
+        "applies regime rules: keeps or adds explicit reasoning guidance and 2-5 consistent few-shot examples rather than blindly stripping them",
+        "covers edge cases in the examples (ambiguous or empty input), not just the happy path",
+        "does not apply reasoning-model conventions like removing CoT to this model class"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "Our extraction prompt keeps inventing values for missing fields.",
+      "expected_behavior": [
+        "makes possibly-absent fields nullable/optional and permits an explicit unknown answer instead of forcing required fields",
+        "recommends schema-enforced structured output and distinguishes JSON validity from schema adherence",
+        "adds validation on values, not just shape"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "Just make my prompt better.",
+      "expected_behavior": [
+        "asks for or identifies concrete failing examples before rewriting, or sets up a minimal before/after comparison",
+        "avoids stacking speculative techniques without a named failure to fix",
+        "changes one variable at a time or clearly separates independent edits"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "Add 'you are a world-class expert engineer' so it gets smarter.",
+      "expected_behavior": [
+        "explains persona is a tone/framing device with weak accuracy evidence, citing the evidence",
+        "offers higher-leverage alternatives: precise instructions, output contract, explicit constraints",
+        "retains persona only for advisory or stylistic tasks where it plausibly helps"
+      ]
+    }
+  ]
+}

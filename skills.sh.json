@@ -1,0 +1,16 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Prompt craft",
+      "description": "Evidence-based prompt rewriting and honest measurement for the latest frontier models - what to change, and how to prove the change helped.",
+      "skills": ["optimize-prompt", "evaluate-prompts"]
+    },
+    {
+      "title": "Autonomous runs",
+      "description": "Goal contracts and convergent loop engineering for agents that work unattended - verifiable done-states, supervisor-owned caps, and loops that actually stop.",
+      "skills": ["write-agent-goal", "engineer-agent-loop"]
+    }
+  ]
+}

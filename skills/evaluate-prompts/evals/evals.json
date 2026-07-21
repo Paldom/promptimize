@@ -1,0 +1,63 @@
+{
+  "skill": "evaluate-prompts",
+  "cases": [
+    { "type": "should_trigger", "prompt": "is prompt A better than prompt B?" },
+    { "type": "should_trigger", "prompt": "set up an A/B test for our two support-bot prompts" },
+    { "type": "should_trigger", "prompt": "build a benchmark to compare prompt variants for the extraction task" },
+    { "type": "should_trigger", "prompt": "how many samples do I need to tell if the new prompt is actually better?" },
+    { "type": "should_trigger", "prompt": "set up llm-as-judge scoring for our outputs and make it trustworthy" },
+    { "type": "should_trigger", "prompt": "our judge model keeps preferring whichever answer comes first, fix the eval" },
+    { "type": "should_trigger", "prompt": "make an eval set for the summarizer from our production failures" },
+    { "type": "should_trigger", "prompt": "did my prompt change actually improve anything? measure it properly" },
+    { "type": "should_trigger", "prompt": "help me a/b test prompts with promptfoo" },
+    { "type": "should_trigger", "prompt": "we tweaked the prompt 5 times this week on vibes - add real evaluation" },
+    { "type": "should_not_trigger", "prompt": "rewrite this prompt to fix the json errors" },
+    { "type": "should_not_trigger", "prompt": "optimize my system prompt for gpt-5.6" },
+    { "type": "should_not_trigger", "prompt": "write a goal with success criteria for an overnight agent run" },
+    { "type": "should_not_trigger", "prompt": "add stop conditions to my agent loop" },
+    { "type": "should_not_trigger", "prompt": "evaluate this candidate's take-home assignment" },
+    { "type": "should_not_trigger", "prompt": "run our pytest suite and tell me what fails" },
+    { "type": "should_not_trigger", "prompt": "evaluate whether we should use postgres or mysql" },
+    { "type": "should_not_trigger", "prompt": "set up unit tests for the parser module" },
+    { "type": "should_not_trigger", "prompt": "grade my essay draft for the application" },
+    { "type": "should_not_trigger", "prompt": "which model is better, fable 5 or gpt-5.6?" },
+    {
+      "type": "quality",
+      "prompt": "We have two versions of our support prompt. Tell me which is better.",
+      "expected_behavior": [
+        "builds or requests an eval set drawn from real production cases including failures, not synthetic happy-path examples",
+        "runs paired comparisons: same inputs through both variants, position-swapped when scored pairwise",
+        "applies deterministic checks before any LLM judge and reports per-case diffs",
+        "reports an effect size or confidence interval, not just a win count, and states what the sample size cannot detect"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "Set up an LLM judge for tone compliance.",
+      "expected_behavior": [
+        "uses per-criterion boolean pass/fail with evidence quotes instead of 1-10 scores",
+        "specifies a judge from a different (ideally stronger) model family, blind to variant identity, with a pinned version",
+        "calibrates against human labels (at least ~30 for sanity, 100-250 preferred) and reports kappa or TPR/TNR, not raw agreement",
+        "adds position-swap consistency checks and a spot-check cadence for production scores"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "We only have 20 test cases. Is the new prompt better?",
+      "expected_behavior": [
+        "states honestly what 20 cases can resolve (only large gaps) and avoids overclaiming significance",
+        "recommends paired scoring plus deterministic checks to squeeze signal from small N",
+        "proposes growing the set from production failures before trusting small differences"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "Our prompt optimizer reports the new prompt is +15% on its metric. Ship it?",
+      "expected_behavior": [
+        "checks for eval leakage: whether the optimizer selected on data the baseline never saw, and demands a held-out comparison",
+        "checks for metric gaming and prompt bloat (length penalty) before trusting the number",
+        "verifies the judge or metric itself was calibrated before accepting the delta"
+      ]
+    }
+  ]
+}

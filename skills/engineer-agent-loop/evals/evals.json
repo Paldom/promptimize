@@ -1,0 +1,65 @@
+{
+  "skill": "engineer-agent-loop",
+  "cases": [
+    { "type": "should_trigger", "prompt": "my agent keeps looping on the same failing tool call, how do I stop it" },
+    { "type": "should_trigger", "prompt": "design an agentic loop for processing 500 tickets that won't stall" },
+    { "type": "should_trigger", "prompt": "what stop conditions should my autonomous coding agent have?" },
+    { "type": "should_trigger", "prompt": "the bot never terminates - add proper exit conditions and budgets" },
+    { "type": "should_trigger", "prompt": "add a hard max-iteration cap to this agent" },
+    { "type": "should_trigger", "prompt": "should this be ReAct or plan-and-execute for a migration across 200 files?" },
+    { "type": "should_trigger", "prompt": "add a verifier so the agent stops rubber-stamping its own work" },
+    { "type": "should_trigger", "prompt": "my claude session drifts after 30 turns and forgets what it was doing, wat do" },
+    { "type": "should_trigger", "prompt": "context blows up mid-run and the agent starts re-deriving everything - fix the loop" },
+    { "type": "should_trigger", "prompt": "how many subagents should I fan out for this audit and when should they stop?" },
+    { "type": "should_trigger", "prompt": "harden this while-loop agent script so it can't run away overnight" },
+    { "type": "should_not_trigger", "prompt": "rewrite this prompt so GPT-5.6 follows the output format" },
+    { "type": "should_not_trigger", "prompt": "write a goal with success criteria for tonight's unattended run" },
+    { "type": "should_not_trigger", "prompt": "run /babysit-prs every 10 minutes" },
+    { "type": "should_not_trigger", "prompt": "my for loop in python is infinite, debug it" },
+    { "type": "should_not_trigger", "prompt": "reduce the token usage of my system prompt" },
+    { "type": "should_not_trigger", "prompt": "why is this recursion not terminating in my sort function" },
+    { "type": "should_not_trigger", "prompt": "set up a cron job to retrain the model nightly" },
+    { "type": "should_not_trigger", "prompt": "my /goal never gets marked done - is the condition too vague?" },
+    { "type": "should_not_trigger", "prompt": "improve the wording of my agent's persona" },
+    { "type": "should_not_trigger", "prompt": "write a retro on our sprint process loop" },
+    {
+      "type": "quality",
+      "prompt": "Design a loop for an agent that fixes all type errors in a repo overnight.",
+      "expected_behavior": [
+        "chooses and justifies a loop pattern from the task's path-knowability rather than defaulting to multi-agent",
+        "puts hard caps in code not prompt text: iteration cap, wall-clock timeout, token/cost budget, with cumulative (effective) bounds across retries",
+        "defines explicit terminal states (success, failed, budget exhausted, cancelled) and deterministic no-progress detection with a 3-strike escalation",
+        "gates completion on an external verifier (type checker exit 0), never the agent's own claim",
+        "plans context: state-file checkpoints and compaction so the loop survives a context reset or crash"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "My agent alternates forever between two 'fixes' that undo each other.",
+      "expected_behavior": [
+        "identifies oscillation as a no-progress failure detectable deterministically from trace shape",
+        "prescribes cycle detection plus an escalation exit after N strikes instead of more prompting",
+        "recommends a fresh-context verifier or replan step to break the tie"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "Design a multi-agent loop to translate 10,000 docs.",
+      "expected_behavior": [
+        "questions whether a dynamic orchestrator is needed when subtasks are fixed - hardcode the decomposition and parallelize instead",
+        "scopes each worker's tools, permissions, and budget individually",
+        "verifies aggregated output with a check the workers didn't produce",
+        "prices the escalation honestly (multi-agent quality gains cost a token multiple)"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "Add self-reflection so the agent improves each iteration.",
+      "expected_behavior": [
+        "warns that ungrounded self-critique rubber-stamps errors and requires an external signal (tests, compiler, separate critic with clean context)",
+        "caps reflection iterations (most gains land in the first 1-2) and returns the best-scoring attempt on non-convergence",
+        "keeps reflection memory short and specific (cite the tool and observed error), not generic advice"
+      ]
+    }
+  ]
+}

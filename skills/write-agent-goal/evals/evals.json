@@ -1,0 +1,67 @@
+{
+  "skill": "write-agent-goal",
+  "cases": [
+    { "type": "should_trigger", "prompt": "write a /goal for migrating our test suite from jest to vitest" },
+    { "type": "should_trigger", "prompt": "help me define success criteria for an overnight agent run" },
+    { "type": "should_trigger", "prompt": "I need a goal prompt with a clear definition of done for the agent refactoring the auth module" },
+    { "type": "should_trigger", "prompt": "make this goal verifiable: 'clean up the repo'" },
+    { "type": "should_trigger", "prompt": "whats a good stop condition for letting claude work unattended on this backlog" },
+    { "type": "should_trigger", "prompt": "draft an objective for an autonomous session: ship the CSV export feature, don't touch billing code" },
+    { "type": "should_trigger", "prompt": "my goal keeps getting marked complete before the work is actually done - tighten it" },
+    { "type": "should_trigger", "prompt": "turn 'make the dashboard faster' into a goal an agent can't game" },
+    { "type": "should_trigger", "prompt": "rewrite this /goal so completion is unambiguous" },
+    { "type": "should_trigger", "prompt": "set acceptance criteria for a long-running codex task so it knows when it's finished" },
+    { "type": "should_trigger", "prompt": "write me a goal condition with a budget cap for tonight's run" },
+    { "type": "should_not_trigger", "prompt": "optimize this system prompt for GPT-5.6" },
+    { "type": "should_not_trigger", "prompt": "my agent loop keeps retrying the same failing command, fix the harness" },
+    { "type": "should_not_trigger", "prompt": "add a max_iterations cap to my LangGraph agent" },
+    { "type": "should_not_trigger", "prompt": "what are OKRs and how do I write good ones for my team?" },
+    { "type": "should_not_trigger", "prompt": "set a reminder to check the deploy every 5 minutes" },
+    { "type": "should_not_trigger", "prompt": "write acceptance criteria for this Jira ticket for the frontend team" },
+    { "type": "should_not_trigger", "prompt": "write a definition of done for our project roadmap" },
+    { "type": "should_not_trigger", "prompt": "why did my /goal command error out in claude code?" },
+    { "type": "should_not_trigger", "prompt": "make my prompt shorter, it's 2000 tokens" },
+    { "type": "should_not_trigger", "prompt": "design a plan-and-execute agent for the data migration" },
+    { "type": "should_not_trigger", "prompt": "help me set personal goals for learning rust this year" },
+    {
+      "type": "quality",
+      "prompt": "Write a /goal for: migrate all fetch() calls to our apiClient wrapper across src/, tests must pass.",
+      "expected_behavior": [
+        "produces a goal whose end state is machine-checkable and names the check command (e.g. grep for remaining fetch( calls, test suite exit 0) so evidence lands in the transcript",
+        "includes do-not-touch scope constraints and closes gaming shortcuts (e.g. no modifying tests to make them pass)",
+        "includes a retry ceiling and a turn/budget ceiling as explicit exits alongside success",
+        "keeps the condition compact (within the community-reported ~4000 character /goal cap) and free of unverifiable adjectives"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "turn 'improve onboarding' into an agent goal",
+      "expected_behavior": [
+        "refuses to ship an unverifiable adjective-based condition and converts it to measurable proxies or asks which metric matters",
+        "proposes at least one checkable end state with its check command or artifact",
+        "adds an attempt/budget cap and an escalation exit",
+        "if no machine check exists, gates on explicit human approval rather than faking verifiability"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "Goal for an unattended run that must never touch production configs: rotate the staging secrets.",
+      "expected_behavior": [
+        "embeds the negative constraint (no prod config changes) in the goal condition itself",
+        "requires evidence that the constraint held (e.g. baseline-aware diff scope check), not just task completion",
+        "adds permission/side-effect boundaries and an approval gate or human-escalation exit for irreversible actions",
+        "treats the rotation as irreversible multi-stage work: no non-interruptible phase without remaining budget, with a rollback or roll-forward rule stated",
+        "keeps secret values out of the goal text and requires redacted, bounded evidence (no secret-printing check commands)"
+      ]
+    },
+    {
+      "type": "quality",
+      "prompt": "My goal says 'don't stop until tests pass' but the agent edited the tests. Fix the goal text.",
+      "expected_behavior": [
+        "diagnoses the gaming shortcut and rewrites the condition to exclude it (tests pass without modifying files under tests/ or snapshots)",
+        "adds an evidence requirement (show the failing-then-passing command output)",
+        "keeps the fix in the goal text and points to the loop-engineering skill only for harness-level enforcement"
+      ]
+    }
+  ]
+}
